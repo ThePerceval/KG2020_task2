@@ -1,12 +1,12 @@
 package com.company;
 
-import com.company.LinaDrawers.Bresenhaim;
-import com.company.LinaDrawers.DDALineDrawer;
-import com.company.LinaDrawers.WuLineDrawer;
+import com.company.LineDrawers.Bresenhaim;
+import com.company.LineDrawers.DDALineDrawer;
+import com.company.LineDrawers.WuLineDrawer;
+import com.company.grapicsDrawer.graphicsDrawer;
 import com.company.utils.bufferedImagePixelDrawer;
 import com.company.utils.lineDrawer;
 import com.company.utils.pixelDrawer;
-import com.company.utils.graphicsDrawer;
 
 
 import javax.swing.*;
@@ -15,9 +15,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class drawPanel extends JPanel{
+public class drawPanel extends JPanel {
     List<lineDrawer> list;
-    graphicsDrawer graphics;
+    //graphicsDrawer graphics;
+
     @Override
     public void paint(Graphics g) {
         BufferedImage bi = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -27,13 +28,12 @@ public class drawPanel extends JPanel{
         gr.setColor(Color.black);
         gr.dispose();
         pixelDrawer pd = new bufferedImagePixelDrawer(bi);
-        graphics = new ;
+
         list = new ArrayList<lineDrawer>();
         list.add(new Bresenhaim(pd));
         list.add(new DDALineDrawer(pd));
         list.add(new WuLineDrawer(pd));
 
-        //g.fillova
 
         int r = 100, n = 64, x = 200, y = 200;
         double da = Math.PI * 2 / n;
@@ -47,7 +47,3 @@ public class drawPanel extends JPanel{
         g.drawImage(bi,0,0, null);
     }
 }
-
-// снежинка
-// из центра в текущее положение
-//ё

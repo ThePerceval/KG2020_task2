@@ -1,4 +1,4 @@
-package com.company.LinaDrawers;
+package com.company.LineDrawers;
 
 import com.company.utils.lineDrawer;
 import com.company.utils.pixelDrawer;
