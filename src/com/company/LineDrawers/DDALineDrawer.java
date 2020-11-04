@@ -14,38 +14,23 @@ public class DDALineDrawer implements lineDrawer{
 
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
-        double dx = x2 - x1;
-        double dy = y2 - y1;
-        if (Math.abs(dx) >= Math.abs(dy)){
-            double k = dy / dx;
-            if (x1 > x2){
-                int tmp = x1;
-                x1 = x2;
-                x2 = tmp;
-                tmp = y1;
-                y1 = y2;
-                y2 = tmp;
-            }
-            for (int j = x1; j <= x2; j++){
-                double i = k * (j - x1) + y1;
-                pd.drawPixel(j, (int)i, Color.BLACK);
-            }
+
+        boolean step = Math.abs(x2 - x1) < Math.abs(y2 - y1);
+        if(step){
+            int tmp = x1; x1 = y1; y1 = tmp;
+            tmp = y2; y2 = x2; x2 = tmp;
         }
-        else {
-            double kObr = dx / dy;
-            if (y1 > y2){
-                int tmp = x1;
-                x1 = x2;
-                x2 = tmp;
-                tmp = y1;
-                y1 = y2;
-                y2 = tmp;
-            }
-            for (int i = y1; i <= y2; i++){
-                double j = kObr * (i - y1) + x1;
-                pd.drawPixel((int)j, i, Color.BLUE);
-            }
+        if(x1 > x2){
+            int tmp = x1; x1 = x2; x2 = tmp;
+            tmp = y1; y1 = y2; y2 = tmp;
+        }
+
+
+        double dx = x2 - x1, dy = Math.abs(y2 - y1);
+        double k = dy / dx, y = y1;
+        for (int x = x1; x < x2; x++) {
+            pd.drawPixel(step ? (int) Math.round(y) : x, step ? x : (int) Math.round(y), Color.black);
+            y = y + (y2 > y1 ? k : -k);
         }
     }
-
 }
