@@ -7,9 +7,14 @@ import java.awt.*;
 
 public class Bresenhaim implements lineDrawer {
     private pixelDrawer pd;
+    private Color color = Color.BLACK;
 
     public Bresenhaim(pixelDrawer pd) {
         this.pd = pd;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     @Override
@@ -30,7 +35,7 @@ public class Bresenhaim implements lineDrawer {
                 y = y1;
         for (int x = x1; x < x2; x++) {
             error -= dy;
-            pd.drawPixel(step ? y : x, step ? x : y, Color.BLACK);
+            pd.drawPixel(step ? y : x, step ? x : y, color);
             if(error < 0){
                 y += yStep;
                 error += dx;

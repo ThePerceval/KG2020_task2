@@ -7,14 +7,18 @@ import java.awt.*;
 
 public class DDALineDrawer implements lineDrawer{
     private pixelDrawer pd;
+    private Color color = Color.BLACK;
 
     public DDALineDrawer(pixelDrawer pd) {
         this.pd = pd;
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
-
         boolean step = Math.abs(x2 - x1) < Math.abs(y2 - y1);
         if(step){
             int tmp = x1; x1 = y1; y1 = tmp;
@@ -25,11 +29,11 @@ public class DDALineDrawer implements lineDrawer{
             tmp = y1; y1 = y2; y2 = tmp;
         }
 
-
         double dx = x2 - x1, dy = Math.abs(y2 - y1);
         double k = dy / dx, y = y1;
+
         for (int x = x1; x < x2; x++) {
-            pd.drawPixel(step ? (int) Math.round(y) : x, step ? x : (int) Math.round(y), Color.black);
+            pd.drawPixel(step ? (int) Math.round(y) : x, step ? x : (int) Math.round(y), color);
             y = y + (y2 > y1 ? k : -k);
         }
     }
