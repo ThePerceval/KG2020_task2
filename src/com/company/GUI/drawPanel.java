@@ -143,6 +143,10 @@ public class drawPanel extends JPanel implements MouseMotionListener, MouseListe
             setAllFalse();
             drawArc = true;
         }
+        if(e.getKeyCode() == KeyEvent.VK_5){
+            setAllFalse();
+            repaint();
+        }
     }
 
     private void setAllFalse(){
