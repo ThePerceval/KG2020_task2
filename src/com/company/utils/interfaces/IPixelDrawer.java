@@ -1,8 +1,8 @@
-package com.company.utils;
+package com.company.utils.interfaces;
 
 import java.awt.*;
 
-public interface pixelDrawer {
+public interface IPixelDrawer {
     void drawPixel(int x, int y, Color color);
 }
 

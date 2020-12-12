@@ -11,6 +11,7 @@ public class Main {
         GUI window = new GUI();
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setSize(new Dimension(800, 600));
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
 }
